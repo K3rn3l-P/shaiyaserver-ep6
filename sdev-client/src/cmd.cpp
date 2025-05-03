@@ -11,7 +11,7 @@ using namespace shaiya;
 void load_advanced_config()
 {
     std::string str(MAX_PATH, 0);
-    GetPrivateProfileStringA("ADVANCED", "COSTUMES", "TRUE", str.data(), str.size(), g_var->iniFileName.data()); 
+    GetPrivateProfileStringA("ADVANCED", "COSTUMES", "TRUE", str.data(), str.size(), g_var->iniFileName.data());
     g_showCostumes = str.compare(0, 4, "TRUE") == 0 ? true : false;
 
     GetPrivateProfileStringA("ADVANCED", "WINGS", "TRUE", str.data(), str.size(), g_var->iniFileName.data());
