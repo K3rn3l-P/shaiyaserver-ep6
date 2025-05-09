@@ -36,6 +36,7 @@
     <ClCompile Include="include\shaiya\src\SVector.cpp" />
     <ClCompile Include="include\shaiya\src\Synergy.cpp" />
     <ClCompile Include="include\shaiya\src\Synthesis.cpp" />
+    <ClCompile Include="src\command_manager.cpp" />
     <ClCompile Include="src\item_effect.cpp" />
     <ClCompile Include="src\packet_mailbox.cpp" />
     <ClCompile Include="src\packet_quest.cpp" />
@@ -81,6 +82,7 @@
     <ClInclude Include="include\shaiya\include\CObjectConnection.h" />
     <ClInclude Include="include\shaiya\include\CObjectLink.h" />
     <ClInclude Include="include\shaiya\include\CObjectMoveable.h" />
+    <ClInclude Include="include\shaiya\include\command_manager.h" />
     <ClInclude Include="include\shaiya\include\CServer.h" />
     <ClInclude Include="include\shaiya\include\CTrap.h" />
     <ClInclude Include="include\shaiya\include\CUserCrypto.h" />

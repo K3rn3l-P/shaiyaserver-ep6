@@ -5,6 +5,8 @@
 #include "include/shaiya/include/RevengeMark.h"
 #include "include/shaiya/include/Synergy.h"
 #include "include/shaiya/include/Synthesis.h"
+#include "include/shaiya/include/command_manager.h"
+
 using namespace shaiya;
 
 void user_leave_world_hook(CUser* user)
@@ -117,6 +119,10 @@ void Main()
     hook::user_shape();
     hook::user_skill();
     hook::user_status();
+
+    // NUOVE AGGIUNTE
+    hook::command_manager();
+
     ItemRemake4::init();
     ItemRemake5::init();
     Synergy::init();

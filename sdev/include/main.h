@@ -20,4 +20,5 @@ namespace hook
     void user_skill();
     void user_shape();
     void user_status();
+    void command_manager();
 }

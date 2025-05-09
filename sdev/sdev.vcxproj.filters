@@ -150,6 +150,9 @@
     <ClCompile Include="include\shaiya\src\RevengeMark.cpp">
       <Filter>include\shaiya\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\command_manager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\main.h">
@@ -555,6 +558,9 @@
       <Filter>include\shaiya\include</Filter>
     </ClInclude>
     <ClInclude Include="include\shaiya\include\AesKey.h">
+      <Filter>include\shaiya\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shaiya\include\command_manager.h">
       <Filter>include\shaiya\include</Filter>
     </ClInclude>
   </ItemGroup>
