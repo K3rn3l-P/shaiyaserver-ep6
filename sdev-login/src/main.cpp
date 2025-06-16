@@ -6,10 +6,25 @@
 #include <util/util.h>
 #include "include/main.h"
 #include "include/shaiya/include/SDatabase.h"
+#include "login_validation.h"
 using namespace shaiya;
 
 short get_user_hook(SDatabase* db, char* username, char* password, uint lowPart, uint highPart, char* ipv4)
 {
+    // Validazione input
+    if (!validate_username(username)) {
+        write_log(std::string("Login fallito: username non valido: ") + username);
+        return -1;
+    }
+    if (!validate_password(password)) {
+        write_log(std::string("Login fallito: password non valida per l'utente: ") + username);
+        return -1;
+    }
+    if (!safe_sql_input(username) || !safe_sql_input(password)) {
+        write_log(std::string("Login fallito: input sospetto (SQLi): ") + username);
+        return -1;
+    }
+
     short ret = 0;
     ULARGE_INTEGER sessionId{ lowPart, highPart };
 
@@ -24,6 +39,9 @@ short get_user_hook(SDatabase* db, char* username, char* password, uint lowPart,
 
     if (FAILED(ret))
         return -1;
+
+    // Log login tentato
+    write_log(std::string("Tentativo login per: ") + username + " da IP: " + ipv4);
 
     return SDatabase::ExecuteSql(db);
 }

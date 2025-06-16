@@ -81,6 +81,9 @@
     <ClInclude Include="include\shaiya\include\AesKey.h">
       <Filter>include\shaiya\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\login_validation.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="include\shaiya\src\SDatabase.cpp">
       <Filter>include\shaiya\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\login_validation.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

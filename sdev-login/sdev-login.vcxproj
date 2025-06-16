@@ -30,11 +30,13 @@
     <ClInclude Include="include\shaiya\include\SSyncQueueBufferSend.h" />
     <ClInclude Include="include\shaiya\include\SSyncQueueStatus.h" />
     <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="src\login_validation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\shaiya\src\SConnection.cpp" />
     <ClCompile Include="include\shaiya\src\SDatabase.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\login_validation.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
