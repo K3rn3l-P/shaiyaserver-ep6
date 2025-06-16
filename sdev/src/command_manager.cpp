@@ -56,9 +56,9 @@ namespace command_manager
             output = output_format.str();
 
             // [MODIFICA] Timer rimozione automatica mob generati da /mmake: cambia `60` in `std::chrono::seconds(X)`
-            // Rimuovi automaticamente dopo 60 secondi
+            // Rimuovi automaticamente dopo 3600 secondi
             std::thread([zone, objectId]() {
-                std::this_thread::sleep_for(std::chrono::seconds(60)); // Cambia qui la durata futura
+                std::this_thread::sleep_for(std::chrono::seconds(3600)); // Cambia qui la durata futura
                 CZone::MobRemoveById(zone, objectId);
                 }).detach();
 
