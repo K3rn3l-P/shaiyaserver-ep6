@@ -11,12 +11,35 @@
 #include "include/shaiya/include/SConnection.h"
 #include "include/shaiya/include/SDatabase.h"
 #include "include/shaiya/include/SDatabasePool.h"
+#include <regex>
+#include <algorithm>
+#include <cctype>
 using namespace shaiya;
+
+// Definizione fuori dal namespace
+bool validate_character_name(const char* name) {
+    if (!name) return false;
+    std::regex re("^[A-Za-z0-9_]{3,13}$");
+    if (!std::regex_match(name, re))
+        return false;
+    static const char* blacklist[] = { "admin", "gm", "mod", "shaiya", "support" };
+    std::string lower(name);
+    std::transform(lower.begin(), lower.end(), lower.begin(), [](unsigned char c){ return std::tolower(c); });
+    for (const auto& bad : blacklist)
+        if (lower.find(bad) != std::string::npos)
+            return false;
+    if (std::regex_search(name, std::regex(R"((.)\1{2,})")))
+        return false;
+    return true;
+}
 
 namespace user_character
 {
     bool is_name_available(char* name)
     {
+        if (!validate_character_name(name))
+            return false;
+
         auto db = SDatabasePool::AllocDB();
         if (!db)
             return false;
