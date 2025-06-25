@@ -9,7 +9,6 @@ using namespace shaiya;
 
 void Main()
 {
-    hook::gui();
     hook::packet();
 
     //Nuovi setting
@@ -26,4 +25,5 @@ void Main()
     util::write_memory((void*)0x4F7318, 0x44, 1);
     util::write_memory((void*)0x59A3F3, 0x44, 1);
     util::write_memory((void*)0x59A6DD, 0x44, 1);
+    hook::patch();
 }

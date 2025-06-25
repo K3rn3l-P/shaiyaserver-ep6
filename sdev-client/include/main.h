@@ -14,12 +14,12 @@ extern unsigned u0x41F9ED;
 
 namespace hook
 {
-    void gui();
     void packet();
 
     //Nuovi setting
     void camera_limit();
     void cmd();
+    void patch();
 }
 
 //Nuovi setting

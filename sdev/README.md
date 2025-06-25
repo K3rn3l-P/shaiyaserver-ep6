@@ -1,6 +1,6 @@
 # Documentation
 
-This library is for the game service. Incoming and outgoing packet types are named relative to the services.
+This library is for the game service. Please read the features section to learn more.
 
 ## Environment
 
@@ -24,6 +24,8 @@ https://github.com/kurtekat/shaiya-episode-6/tree/main/sdev/bin/
 
 # Features
 
+All features are implemented based on client specifications. The intent is to keep everything as vanilla as possible.
+
 ## Item Mall
 
 Install the following procedures:
@@ -36,6 +38,75 @@ Install the following procedures:
 ```
 
 If you receive an error, change `ALTER` to `CREATE` and try again.
+
+## Reward Item Event
+
+Event progress is account-wide. The progress of the current item will reset if a character leaves the game world. Do not expect the progress bar to synchronize perfectly.
+
+### Configuration
+
+The client expects no more than 20 items. Use the following example to get started:
+
+```ini
+; PSM_Client\Bin\Data\RewardItem.ini
+
+[RewardItem_1]
+; minutes
+Delay=5
+Type=100
+TypeID=1
+Count=1
+
+[RewardItem_2]
+Delay=10
+Type=100
+TypeID=1
+Count=1
+
+[RewardItem_3]
+Delay=20
+Type=100
+TypeID=1
+Count=1
+
+[RewardItem_4]
+Delay=40
+Type=100
+TypeID=1
+Count=1
+
+[RewardItem_5]
+Delay=80
+Type=100
+TypeID=1
+Count=1
+```
+
+Add the following system messages:
+
+```
+2044		"The keep-alive event has ended."
+//
+7186		"Medal event begins in 5 minutes! Make sure you have at least 3 open inventory slots or else you will not be able to receive a reward."
+7187		"Medal event begins in 1 minute! Make sure you have at least 3 open inventory slots or else you will not be able to receive a reward."
+7188		"Could not receive your reward because you do not have space in your inventory."
+7189		"Bronze medal received"
+7190		"Silver medal received"
+7191		"Gold medal received"
+7192		"Recurring player item received"
+```
+
+### Medal Event
+
+This feature will not be implemented.
+
+### Clients
+
+| Locale | Patch | Supported          |
+|--------|-------|--------------------|
+| ES     | 171   | :x:                |
+| PT     | 182   | :white_check_mark: |
+| PT     | 189   | :white_check_mark: |
 
 ## Alchemy
 
@@ -95,7 +166,7 @@ CreateType=30
 CreateTypeID=41
 ```
 
-Lapis combination requires 1 Crowley Essence for each `ReqIg` value greater than or equal to 36. The client does not allow more than one lapis from the same stack or `ReqIg` values 30 and 99.
+Lapis combination requires 1 Crowley Essence for each `ReqIg` value greater than or equal to 36. The client does not allow more than one lapis from the same stack. `ReqIg` values 30 and 99 are not allowed.
 
 | ItemID | ItemName        | ItemEffect |
 |--------|-----------------|------------|
@@ -179,14 +250,7 @@ The following items are supported:
 
 ## NpcQuest
 
-The episode 6 format has 6 quest results, each containing up to 3 items. The following items are supported:
-
-| ItemId | SkillId | SkillLv |
-|--------|---------|---------|
-| 101112 | 432     | 2       |
-| 101113 | 432     | 3       |
-
-The library will divide the ability value by 100.
+The episode 6 format has 6 quest results, each containing up to 3 items. The game service executable has been modified to read the file format.
 
 ## Revenge Mark
 
@@ -209,8 +273,8 @@ The kill count will determine which effect(s) will be rendered. The library will
 The client library adds support for system message 509.
 
 ```
-508    "Your revenge to <t> has succeeded!"
-509    "<t> killed  you <v> time(s)."
+508		"Your revenge to <t> has succeeded!"
+509		"<t> killed  you <v> time(s)."
 ```
 
 ## Skill Abilities
@@ -239,6 +303,13 @@ Unsupported ability types will not be implemented.
 The effect(s) will be removed a few seconds after the skill has been stopped.
 
 ### Skill Ability 87
+
+The following items are supported:
+
+| ItemId | SkillId | SkillLv |
+|--------|---------|---------|
+| 101112 | 432     | 2       |
+| 101113 | 432     | 3       |
 
 The ability value is expected to be greater than or equal to 200. The library will divide the ability value by 100.
 

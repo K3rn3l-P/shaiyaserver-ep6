@@ -76,7 +76,7 @@
     <ClCompile Include="src\camera_limit.cpp" />
     <ClCompile Include="src\cmd.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\gui.cpp" />
+    <ClCompile Include="src\patch.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\packet.cpp" />
     <ClCompile Include="src\static.cpp" />

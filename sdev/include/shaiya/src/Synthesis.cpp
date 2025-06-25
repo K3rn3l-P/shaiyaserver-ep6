@@ -5,7 +5,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <util/ini/ini.h>
-#include <util/string/string.hpp>
+#include <util/string/split.h>
 #include "include/shaiya/include/Synthesis.h"
 using namespace shaiya;
 
@@ -21,6 +21,9 @@ void Synthesis::init()
         path.remove_filename();
         path.append("Data");
         path.append("ChaoticSquare.ini");
+
+        if (!std::filesystem::exists(path))
+            return;
 
         for (const auto& section : util::ini::get_sections(path))
         {
