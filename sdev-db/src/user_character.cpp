@@ -18,7 +18,13 @@ using namespace shaiya;
 
 // Definizione fuori dal namespace
 bool validate_character_name(const char* name) {
-    if (!name) return false;
+    if (!name || !*name) return false;
+    // Rimuovi spazi iniziali
+    while (*name && isspace((unsigned char)*name)) ++name;
+    size_t len = strlen(name);
+    if (len < 3 || len > 13) return false;
+    for (const char* p = name; *p; ++p)
+        if (!isprint((unsigned char)*p)) return false;
     std::regex re("^[A-Za-z0-9_]{3,13}$");
     if (!std::regex_match(name, re))
         return false;
