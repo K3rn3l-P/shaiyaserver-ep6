@@ -24,25 +24,39 @@ void write_log(const std::string& message) {
     }
 }
 
-// Username: 4-18 caratteri, solo lettere/numeri/underscore
+// Username: 4-18 caratteri, lettere/numeri/@!#
 bool validate_username(const char* username) {
-    std::regex re("^[A-Za-z0-9_]{4,18}$");
-    return std::regex_match(username, re);
+    if (!username) return false;
+    std::string u(username);
+    // Niente spazi prima/dopo o all'interno
+    if (u.find(' ') != std::string::npos) return false;
+    if (u.length() < 4 || u.length() > 18) return false;
+    std::regex re("^[A-Za-z0-9@!#]{4,18}$");
+    if (!std::regex_match(u, re)) return false;
+    // Almeno un carattere speciale obbligatorio
+    if (u.find_first_of("@!#") == std::string::npos) return false;
+    return true;
 }
 
-// Password: 8-20 caratteri, almeno 1 maiuscola, 1 minuscola, 1 numero, 1 speciale
+// Password: 8-20 caratteri, almeno 1 maiuscola, 1 minuscola, 1 numero, 1 speciale tra @!#
 bool validate_password(const char* password) {
+    if (!password) return false;
     std::string pw(password);
+    // Niente spazi prima/dopo o all'interno
+    if (pw.find(' ') != std::string::npos) return false;
     if (pw.length() < 8 || pw.length() > 20) return false;
-    bool has_upper = false, has_lower = false, has_digit = false, has_special = false;
+    std::regex re("^[A-Za-z0-9@!#]{8,20}$");
+    if (!std::regex_match(pw, re)) return false;
+    // Almeno un carattere speciale obbligatorio
+    if (pw.find_first_of("@!#") == std::string::npos) return false;
+    // Almeno una maiuscola, una minuscola, un numero
+    bool has_upper = false, has_lower = false, has_digit = false;
     for (char c : pw) {
         if (std::isupper((unsigned char)c)) has_upper = true;
         else if (std::islower((unsigned char)c)) has_lower = true;
         else if (std::isdigit((unsigned char)c)) has_digit = true;
-        else if (strchr("@!#$%&*?_", c)) has_special = true;
-        else return false; // carattere non consentito
     }
-    return has_upper && has_lower && has_digit && has_special;
+    return has_upper && has_lower && has_digit;
 }
 
 // Protezione SQL injection: vieta caratteri pericolosi
