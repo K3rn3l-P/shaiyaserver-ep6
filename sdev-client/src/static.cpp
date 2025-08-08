@@ -7,6 +7,18 @@ void Static::DrawRect(D3DCOLOR argb, int x, int y, int w, int h)
     (*(LPFN)0x4B6180)(argb, x, y, w, h);
 }
 
+void Static::DrawText_ChatBox(ChatType chatType, const char* text, int unknown)
+{
+    typedef void(__cdecl* LPFN)(ChatType, const char*, int);
+    (*(LPFN)0x4231A0)(chatType, text, unknown);
+}
+
+void Static::DrawText_ViewPoint(int x, int y, D3DCOLOR color, const char* text)
+{
+    typedef void(__cdecl* LPFN)(int, int, D3DCOLOR, const char*);
+    (*(LPFN)0x531640)(x, y, color, text);
+}
+
 int Static::GetDaSkillEffectDataId(int skillId)
 {
     typedef int(__cdecl* LPFN)(int);
@@ -19,14 +31,8 @@ char* Static::GetMsg(int messageNumber)
     return (*(LPFN)0x420DB0)(messageNumber);
 }
 
-bool Static::PlayWav(const char* wavFileName, D3DVECTOR* origin, float volume, bool repeat)
+void Static::SysMsgToChatBox(ChatType chatType, int messageNumber, int unknown)
 {
-    typedef bool(__thiscall* LPFN)(void*, const char*, D3DVECTOR*, float, bool);
-    return (*(LPFN)0x56C650)((void*)0x22B4030, wavFileName, origin, volume, repeat);
-}
-
-void Static::MsgTextOut(int messageType, int messageNumber, int unknown)
-{
-    typedef void(__cdecl* LPFN)(int, int, int);
-    (*(LPFN)0x423150)(messageType, messageNumber, unknown);
+    typedef void(__cdecl* LPFN)(ChatType, int, int);
+    (*(LPFN)0x423150)(chatType, messageNumber, unknown);
 }

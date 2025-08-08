@@ -25,9 +25,7 @@ namespace packet_quest
     }
 
     /// <summary>
-    /// Sends the 0x903 (6.0) success packet to the user. Adds support for skill ability 87. 
-    /// Please note that the client does not prevent gold overflow when it handles the 0x903 
-    /// packet. Do not report it as a bug.
+    /// Sends the 0x903 (6.0) success packet to the user.
     /// </summary>
     void send_success_0x903(CUser* user, CQuest* quest, uint npcId, uint resultIndex)
     {
@@ -39,10 +37,6 @@ namespace packet_quest
 
         if (exp)
         {
-            auto rate = user->multiplyQuestExpRate;
-            if (rate >= 200)
-                exp *= rate / 100;
-
             CUser::AddExpFromUser(user, 0, exp, true);
         }
 

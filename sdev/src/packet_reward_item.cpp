@@ -11,7 +11,11 @@
 #include "include/shaiya/include/SConnection.h"
 using namespace shaiya;
 
-namespace reward_item
+/// <summary>
+/// See the docs for a list of supported clients.
+/// </summary>
+
+namespace packet_reward_item
 {
     void handler(CUser* user, TP_MAIN* packet)
     {
@@ -99,7 +103,7 @@ void __declspec(naked) naked_0x474EFB()
 
         push edi // packet
         push ebx // user
-        call reward_item::handler
+        call packet_reward_item::handler
         add esp,0x8
 
         popad
@@ -128,7 +132,7 @@ void __declspec(naked) naked_0x47BDA2()
     }
 }
 
-void hook::reward_item()
+void hook::packet_reward_item()
 {
     // CUser::PacketProcessing
     util::detour((void*)0x474EFB, naked_0x474EFB, 5);

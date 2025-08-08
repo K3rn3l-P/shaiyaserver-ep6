@@ -1,4 +1,5 @@
 #pragma once
+#include <array>
 #include <vector>
 #include <shaiya/include/common.h>
 
@@ -7,11 +8,9 @@ namespace shaiya
     #pragma pack(push, 1)
     struct ItemRemake
     {
-        uint32_t itemId1;
-        uint32_t itemId2;
-        uint32_t itemId3;
-        int32_t createType;
-        int32_t createTypeId;
+        std::array<uint32_t, 3> items;
+        int32_t newItemType;
+        int32_t newItemTypeId;
     };
     #pragma pack(pop)
 

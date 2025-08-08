@@ -8,16 +8,16 @@ namespace packet
 {
     void hook_0x303(CCharacter* user)
     {
-        if (!user->petType)
+        if (!user->equipment.type[EquipmentSlot::Pet])
             user->pet = nullptr;
 
-        if (!user->costumeType)
+        if (!user->equipment.type[EquipmentSlot::Costume])
         {
             user->enableCostume = 0;
             user->costume.fill(-1);
         }
 
-        if (!user->wingsType)
+        if (!user->equipment.type[EquipmentSlot::Wings])
             user->wings = nullptr;
     }
 
@@ -27,7 +27,7 @@ namespace packet
         std::memcpy(g_var->msgTargetName.data(), killer->charName.data(), killer->charName.size());
         g_var->msgTargetName[killer->charName.size() - 1] = '\0';
         g_var->msgValue = killCount;
-        Static::MsgTextOut(5, 509, 1);
+        Static::SysMsgToChatBox(static_cast<ChatType>(1), 509, 1);
     }
 }
 
