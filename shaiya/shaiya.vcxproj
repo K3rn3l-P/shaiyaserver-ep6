@@ -23,6 +23,7 @@
     <ClInclude Include="include\common\NpcTypes.h" />
     <ClInclude Include="include\common\Sex.h" />
     <ClInclude Include="include\common\SkillTypes.h" />
+    <ClInclude Include="include\common\TargetType.h" />
     <ClInclude Include="include\common\UserTypes.h" />
     <ClInclude Include="include\network\dbAgent\DBQuickUnit.h" />
     <ClInclude Include="include\network\dbAgent\incoming\0400.h" />
