@@ -1,55 +1,30 @@
-# Shaiya Episode 6
+# Shaiya Episode 6 (archived fork)
+
+Fork of [kurtekat/shaiya-episode-6](https://github.com/kurtekat/shaiya-episode-6), a server-side
+DLL injection framework for episode 6 Shaiya private servers (client, login, game and db
+processes). Archived: dormant since August 2025, no active development.
+
+## What this adds
+
+Refactored a large part of the packet-handling code from free functions into namespaced modules,
+ported parts of it to C++20 (`<ranges>`), and reorganized the reverse-engineered client headers
+under a single `include/shaiya/include/` tree. Custom packet handlers cover trading, party,
+mailbox, market, personal shop, quests and item rewards.
+
+This is also where the `/mmake`, `/giveitem` and `/mera` custom server commands referenced in
+[PSM_Cmd-SecureCommandChannel](https://github.com/K3rn3l-P/PSM_Cmd-SecureCommandChannel) come
+from.
 
 ## Environment
 
-Windows 10
+Windows 10, Visual Studio 2022, C++23.
 
-Visual Studio 2022
+## Attribution
 
-C++ 23
+The base injection framework, reverse-engineered client structures and build/injection notes are
+[kurtekat/shaiya-episode-6](https://github.com/kurtekat/shaiya-episode-6), shared as-is by the
+author, no license attached.
 
-## Prerequisites
+## State
 
-[Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x86.exe)
-
-## Injection
-
-### Cheat Engine
-
-Cheat Engine isn't guaranteed to work for everyone. I recommend using Cheat Engine 7.3 because users have reported issues with newer versions.
-
-### Imports
-
-The libraries have an export defined in the main headers. I recommend using [PE Bear](https://github.com/hasherezade/pe-bear) to add new imports.
-
-## Data Execution Prevention (DEP)
-
-Intermittent access violations have been reported on Windows Server 2022. The issue is related to [Data Execution Prevention](https://learn.microsoft.com/en-us/windows/win32/memory/data-execution-prevention). The following command will output the DEP support policy:
-
-```
-wmic OS Get DataExecutionPrevention_SupportPolicy
-```
-
-## False Positives
-
-The files in this repository are submitted to antivirus companies for analysis when viruses are detected during VirusTotal scans, etc. VirusTotal provides a list of false positive [contacts](https://docs.virustotal.com/docs/false-positive-contacts).
-
-## Inspiration
-
-[Cups](https://www.elitepvpers.com/forum/shaiya-pserver-guides-releases/4653021-shaiya-library.html)
-
-[EricDutra-16](https://www.elitepvpers.com/forum/shaiya-pserver-guides-releases/4189218-release-wip-ep6-source-code.html)
-
-[shen1l](https://www.elitepvpers.com/forum/shaiya-pserver-guides-releases/3669922-release-ep6-itemmall-fixed.html)
-
-## References
-
-[Eden](https://github.com/tristonplummer/Eden)
-
-[Teos](https://github.com/ShaiyaTeos/Teos)
-
-[Parsec](https://github.com/matigramirez/Parsec)
-
-## Pull Requests
-
-Pull requests are not welcome. GitHub doesn't allow the pull requests tab to be disabled.
+Archived, no further changes planned.
